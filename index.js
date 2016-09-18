@@ -8,49 +8,84 @@ module.exports = Stack;
 
 
 function Stack(){
-		Stack._data = [];
-		Stack._size = 0;
-		Stack._max_size = 0;
+	var _data = [];
+	var _size = 0;
+	var _max_size = 0;
 	
+	this.push = function (obj){
+		_data[_size++] = obj;
+		return this;
+	};
+	this.pop = function (){
+		var ret = _data[_size - 1];
+		delete _data[--_size];
+		return ret;
+	};
+	this.peek = function (){
+		return _data[_size - 1];
+	};
+	this.size = function (){
+		return _size;
+	};
+	this.isEmpty = function (){
+		return _size === 0;
+	};
+	this.setMaxSize = function (max_size){
+		_max_size = max_size;
+		return this;
+	};
+	this.getMaxSize = function (){
+		return _max_size;
+	};
+	this.empty = function (){
+		_data = [];
+		_size = 0;
+	};
+	this.isFull = function (){
+		return _size === _max_size;
+	};
+	this.copy = function(other){
+		_max_size = other.getMaxSize();
+		
+		for(i = 0; i < other.toArray().length; i++){
+			this.push(other.toArray()[i]);
+		}
+		
+		return this;
+	};
+	this.compare = function(other){
+		if (!Stack.isStack(this) || !Stack.isStack(other)) return false;
+		if ((_size === other.size()) && (_max_size === other.getMaxSize())) return false;
+		return this.toString() === other.toString();
+	};
+	this.toString = function(){
+		var json, tostr;
+		var str = "[Stack] Size : "+_size+", MaxSize : "+_max_size+"\n";
+		for(var i=_size-1; i>=0; i--){
+			str += "[";
+			switch(typeof _data[i]){
+				case "function":
+					str += "function";
+					break;
+				case "object":
+					json = JSON.stringify(_data[i]);
+					tostr = _data[i].toString();
+					str += json === "{}" ? tostr : json;
+					break;
+				default:
+					str += _data[i];
+					break;
+			}
+			str += "]\n";
+		}
+		return str;
+	};
+	this.toArray = function(){
+		return _data;
+	}
 }
-Stack.prototype.push = function (obj){
-	Stack._data[Stack._size++] = obj;
-	return this;
-};
-Stack.prototype.pop = function (){
-	var ret = Stack._data[Stack._size - 1];
-	delete Stack._data[--Stack._size];
-	return ret;
-};
-Stack.prototype.peek = function (){
-	return Stack._data[Stack._size - 1];
-};
-Stack.prototype.size = function (){
-	return Stack._size;
-};
-Stack.prototype.isEmpty = function (){
-	return Stack._size === 0;
-};
-Stack.prototype.setMaxSize = function (max_size){
-	Stack._max_size = max_size;
-	return this;
-};
-Stack.prototype.clear = function (){
-	Stack._data = [];
-	Stack._size = 0;
-};
-Stack.prototype.isFull = function (){
-	return Stack._size === Stack._max_size;
-};
-Stack.prototype.copy = function(other){
-	
-};
-Stack.prototype.compare = function(other){
-	
-};
-Stack.prototype.toString = function(){
-	
-};
+
 Stack.isStack = function(obj){
-	return obj.constructor.toString().indexOf("function Stack()") === 0;
+	return obj.constructor 
+		&& obj.constructor == Stack;
 };
