@@ -60,7 +60,7 @@ function Stack(){
 	};
 	this.toString = function(){
 		var json, tostr;
-		var str = "[Stack] Size : "+_size+", MaxSize : "+_max_size+"\n";
+		var str = "[object Stack] Size : "+_size+", MaxSize : "+(_max_size?_max_size:"Unlimited")+"\n\n";
 		for(var i=_size-1; i>=0; i--){
 			str += "[";
 			switch(typeof _data[i]){
@@ -76,7 +76,7 @@ function Stack(){
 					str += _data[i];
 					break;
 			}
-			str += "]\n";
+			str += "]" + (i===_size-1?" <-- TOP\n":"\n");
 		}
 		return str;
 	};
@@ -86,6 +86,5 @@ function Stack(){
 }
 
 Stack.isStack = function(obj){
-	return obj.constructor 
-		&& obj.constructor == Stack;
+	return obj.constructor && obj.constructor === Stack;
 };
