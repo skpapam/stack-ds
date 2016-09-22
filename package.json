@@ -2,11 +2,7 @@
   "name": "stack-ds",
   "main": "index.js",
   "dependencies": {},
-  "devDependencies": {
-    "mocha": "^3.0.2",
-    "should": "^11.1.0"
-  },
   "scripts" : {
-	  "test" : "./node_modules/.bin/mocha --reporter spec"
+	  "test" : "mocha --reporter spec"
   }
 }
