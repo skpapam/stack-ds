@@ -40,6 +40,19 @@ A simple stack data structure.
 
 * **.toString(debug)** - Export a string representation of the stack. If debug is set to true will export a full representation for each element `mystack.toString();`
 
+## TEST
+
+In order to test the library run : 
+
+```bash
+	npm test
+```
+
+**You need to have mocha installed**
+
+```bash
+	npm install -g mocha
+```
 
 ## LICENSE 
 MIT
