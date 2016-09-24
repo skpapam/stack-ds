@@ -40,6 +40,8 @@ A simple stack data structure.
 
 * **.toString(debug)** - Export a string representation of the stack. If debug is set to true will export a full representation for each element `mystack.toString();`
 
+* **.toArray()** - Exports an array with stacks's data. `mystack.toArray();`
+
 ## TEST
 
 In order to test the library run : 

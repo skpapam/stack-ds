@@ -103,6 +103,10 @@ describe('Checking Maximum Stack Size', function(){
 	it('Trying to push [5] in the stack should return null', function(){
 		assert.equal(null,s.push(5));
 	});
+	it('The Stack should be full', function(){
+		assert.equal(true,s.isFull());
+	});
+	
 	it('The size of stack should be 4', function(){
 		assert.equal(4,s.size());
 	});

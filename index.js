@@ -1,5 +1,7 @@
 /**
- * New node file
+ * stack-ds
+ * A simple stack library
+ * Copyright (c) 2016 Skevos Papamichail
  */
 
 
@@ -107,6 +109,7 @@ function Stack(){
 	 * @returns {Stack} this
 	 */
 	this.copy = function(other){
+		if(!Stack.isStack(other)) return null;
 		_max_size = other.getMaxSize();
 		_data = [];
 		_size = other.size();
